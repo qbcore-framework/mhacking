@@ -65,7 +65,7 @@
 			setTimeout(function(){
 				fadeBigMsg(true);
 				playSound('audiofinish',1);
-				setTimeout(function(){$.post('http://mhacking/callback', JSON.stringify({'success': true, 'remainingtime': endTime-now}));}, 2000);
+				setTimeout(function(){$.post('https://mhacking/callback', JSON.stringify({'success': true, 'remainingtime': endTime-now}));}, 2000);
 			}, 2000);
 			resetGameState();
 		}
@@ -99,7 +99,7 @@
 			setTimeout(function(){
 				fadeBigMsg(true);
 				playSound('audiofail',1);
-				$.post('http://mhacking/callback', JSON.stringify({'success': false, 'remainingtime': 0}));
+				$.post('https://mhacking/callback', JSON.stringify({'success': false, 'remainingtime': 0}));
 			}, 2000);
 			resetGameState();
 		} else {

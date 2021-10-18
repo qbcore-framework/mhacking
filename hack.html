@@ -5,6 +5,7 @@
 <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:700" rel="stylesheet">
 <script type="text/javascript">
 	var hex = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+	var azerty = false;
 	var solutions = ['', ''];
 	var solutionPos = [[0,0],[0,0]];
 	var userSolPos = [[0,1],[0,15]];
@@ -181,14 +182,24 @@
 		document.onkeydown = function(event) {
 
 			if (gameStarted) {
+				var qa;
+				var wz;
+				if(azerty) {
+					qa = 81;
+					wz = 90;
+				}
+				else {
+					qa = 65;
+					wz = 87;
+				}
 				event = event || window.event;
 				var charCode = event.keyCode || event.which;
-				if (charCode == 87 && !solved[0]) { // w
+				if (charCode == wz && !solved[0]) { // Z
 					if ( userSolPos[0][0] > 0 ) {
 						userSolPos[0][0]--;
 					}
 				}
-				else if (charCode == 65 && !solved[0]) { //a
+				else if (charCode == qa && !solved[0]) { //Q
 					if ( userSolPos[0][1] > 1 ) {
 						userSolPos[0][1]--;
 					}
@@ -266,11 +277,11 @@
 					setTimeout(function(){fadeBigMsg(false); startGame(item.s,item.d);}, 3000);
 				}
 			}
-			
+
 			if ('displayMsg' in item) {
 				setBigMsg('<span class="flash">'+item.displayMsg+'</span>');
 			}
-			
+
 			if ('fail' in item) {
 				if (item.fail) {
 					endTime = now;
@@ -290,7 +301,7 @@
 			}
 
 		});
-		
+
 	});
 </script>
 <style type="text/css">

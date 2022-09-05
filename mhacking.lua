@@ -24,7 +24,7 @@ function show()
                 break
             end
         end
-    end
+    end)
 end
 
 function showHelpText(s)

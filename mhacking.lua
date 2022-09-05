@@ -4,23 +4,25 @@ helpTimer = 0
 helpCycle = 4000
 
 function show()
-    while true do
-        Wait(0)
-        if showHelp then
-            if helpTimer > GetGameTimer() then
-                showHelpText("Navigate with ~y~W,A,S,D~s~ and confirm with ~y~SPACE~s~ for the left code block.")
-            elseif helpTimer > GetGameTimer()-helpCycle then
-                showHelpText("Use the ~y~Arrow Keys~s~ and ~y~ENTER~s~ for the right code block")
+    CreateThread(function()
+        while true do
+            Wait(0)
+            if showHelp then
+                if helpTimer > GetGameTimer() then
+                    showHelpText("Navigate with ~y~W,A,S,D~s~ and confirm with ~y~SPACE~s~ for the left code block.")
+                elseif helpTimer > GetGameTimer()-helpCycle then
+                    showHelpText("Use the ~y~Arrow Keys~s~ and ~y~ENTER~s~ for the right code block")
+                else
+                    helpTimer = GetGameTimer()+helpCycle
+                end
+                if IsEntityDead(PlayerPedId()) then
+                    nuiMsg = {}
+                    nuiMsg.fail = true
+                    SendNUIMessage(nuiMsg)
+                end
             else
-                helpTimer = GetGameTimer()+helpCycle
+                break
             end
-            if IsEntityDead(PlayerPedId()) then
-                nuiMsg = {}
-                nuiMsg.fail = true
-                SendNUIMessage(nuiMsg)
-            end
-        else
-            break
         end
     end
 end
